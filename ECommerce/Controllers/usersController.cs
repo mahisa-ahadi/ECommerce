@@ -17,5 +17,18 @@ namespace ECommerce.Controllers
             var users=_context.users.Where(u =>u.IsActive).ToList();
             return View(users);
         }
+
+        //select one from users
+        [HttpGet]
+        public IActionResult Details(Guid id)
+        {
+            var user = _context.users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
     }
 }
