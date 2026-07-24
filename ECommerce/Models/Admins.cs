@@ -36,7 +36,6 @@ namespace ECommerce.Models
 
         [Required]
         [Column("AccessLevel")]
-        [StringLength(30)]
         public AdminAccessLevel AccessLevel { get; set; }
 
         [Required]

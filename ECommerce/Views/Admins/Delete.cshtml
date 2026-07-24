@@ -1,0 +1,108 @@
+﻿@model ECommerce.Models.Admins
+
+@{
+    ViewData["Title"] = "Delete Admin";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow border-danger">
+
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">Delete Admin</h3>
+        </div>
+
+        <div class="card-body">
+
+            <h5 class="text-danger mb-4">
+                Are you sure you want to deactivate this admin?
+            </h5>
+
+            <dl class="row">
+
+                <dt class="col-sm-4">
+                    User ID
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.userID
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Hire Date
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.HireDate.ToString("yyyy-MM-dd")
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Department
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.department
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Access Level
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.AccessLevel
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Can Manage Users
+                </dt>
+                <dd class="col-sm-8">
+                    @if (Model.CanManageUsers)
+                    {
+                        <span class="badge bg-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">No</span>
+                    }
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Can Manage Products
+                </dt>
+                <dd class="col-sm-8">
+                    @if (Model.CanManageProducts)
+                    {
+                        <span class="badge bg-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">No</span>
+                    }
+                </dd>
+
+            </dl>
+
+
+            <form asp-action="Delete" method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- Send the ID back to the POST action -->
+                <input type="hidden" asp-for="userID" />
+
+                <button type="submit" class="btn btn-danger">
+                    Delete
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

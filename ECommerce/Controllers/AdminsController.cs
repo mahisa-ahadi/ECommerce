@@ -50,5 +50,30 @@ namespace ECommerce.Controllers
             }
             return View(admins);
         }
+
+        //soft delete
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            var admin = _context.Admins.Find(id);
+
+            if (admin == null)
+                return NotFound();
+
+            return View(admin);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Admins admins)
+        {
+            var admin=_context.Admins.Find(admins.userID);
+            if(admin == null)
+                return NotFound();
+            admin.IsActive = false;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }
