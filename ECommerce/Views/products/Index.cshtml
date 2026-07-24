@@ -1,0 +1,62 @@
+﻿@using ECommerce.Models
+@model IEnumerable<products>
+
+
+<h1>Products</h1>
+
+<div class="class=" app-ecommerce-category">
+
+    <div class="card">
+        <div class="card-datatable table-responsive">
+            <table class="datatables-category-list table border-top">
+
+    <tr>
+        <th>productID</th>
+        <th>productName</th>
+        <th>productDescription</th>
+        <th>price</th>
+        <th>stockQuantity</th>
+        <th>category</th>
+        <th>imageURL</th>
+        <th>IsActive</th>
+        <th>Edit</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.productID</td>
+            <td>@item.productName</td>
+            <td>@item.productDescription</td>
+            <td>@item.price</td>
+            <td>@item.stockQuantity</td>
+            <td>@item.category</td>
+            <td>@item.imageURL</td>
+            <td>@item.IsActive</td>
+            <td>
+
+                <a class="nav-link text-dark"
+                   asp-controller="products"
+                   asp-action="Edit"
+                   asp-route-id="@item.productID">
+                    Edit
+                </a>
+              
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+</div>
+
+        <a class="nav-link text-dark"
+           asp-controller="products"
+           asp-action="Create">
+          Add New
+        </a>
+</div>
+</div>
+
+

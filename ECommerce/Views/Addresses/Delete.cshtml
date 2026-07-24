@@ -1,0 +1,17 @@
+﻿<h2>Delete Address</h2>
+
+<form asp-action="Delete" method="post">
+
+    <label>Enter Address ID:</label>
+    <input type="text" name="AddressID" />
+
+    <button type="submit">
+        Delete
+    </button>
+
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}

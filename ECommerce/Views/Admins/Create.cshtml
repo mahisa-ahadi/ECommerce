@@ -1,0 +1,110 @@
+﻿@model ECommerce.Models.Admins
+
+@{
+    ViewData["Title"] = "Create Admin";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>Create New Admin</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="name" class="form-label"></label>
+                    <input asp-for="name" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="passwordHash" class="form-label"></label>
+                    <input asp-for="passwordHash" class="form-control" />
+                    <span asp-validation-for="passwordHash" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="phone" class="form-label"></label>
+                    <input asp-for="phone" class="form-control" />
+                    <span asp-validation-for="phone" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Role</label>
+
+                    <input class="form-control"
+                           value="Admin"
+                           readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="orderID" class="form-label"></label>
+                    <input asp-for="orderID" class="form-control" />
+                    <span asp-validation-for="orderID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="HireDate" class="form-label"></label>
+                    <input asp-for="HireDate" type="date" class="form-control" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="department" class="form-label"></label>
+                    <input asp-for="department" class="form-control" />
+                    <span asp-validation-for="department" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccessLevel" class="form-label"></label>
+                    <select asp-for="AccessLevel"
+                            asp-items="Html.GetEnumSelectList<ECommerce.Models.AdminAccessLevel>()"
+                            class="form-select">
+                    </select>
+                    <span asp-validation-for="AccessLevel" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="CanManageUsers" class="form-check-input" />
+                    <label asp-for="CanManageUsers" class="form-check-label"></label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="CanManageProducts" class="form-check-input" />
+                    <label asp-for="CanManageProducts" class="form-check-label"></label>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input asp-for="IsActive" class="form-check-input" />
+                    <label asp-for="IsActive" class="form-check-label"></label>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Create Admin
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back to List
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

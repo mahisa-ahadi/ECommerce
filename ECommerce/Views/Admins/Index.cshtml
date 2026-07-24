@@ -1,0 +1,144 @@
+﻿@model IEnumerable<ECommerce.Models.Admins>
+
+@{
+    ViewData["Title"] = "Admins";
+}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">👨‍💼 Admin Management</h2>
+
+        <a asp-action="Create" class="btn btn-primary">
+            + Add New Admin
+        </a>
+    </div>
+
+
+    <div class="card shadow border-0">
+
+        <div class="card-body p-0">
+
+            <table class="table table-hover table-striped align-middle mb-0">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Hire Date</th>
+                        <th>Department</th>
+                        <th>Access Level</th>
+                        <th>Manage Users</th>
+                        <th>Manage Products</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    @if (Model != null && Model.Any())
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <small>
+                                        @item.userID
+                                    </small>
+                                </td>
+
+
+                                <td>
+                                    @item.HireDate.ToString("yyyy-MM-dd")
+                                </td>
+
+
+                                <td>
+                                    @item.department
+                                </td>
+
+
+                                <td>
+                                    <span class="badge bg-info text-dark">
+                                        @item.AccessLevel
+                                    </span>
+                                </td>
+
+
+                                <td>
+                                    @if (item.CanManageUsers)
+                                    {
+                                        <span class="badge bg-success">
+                                            Yes
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            No
+                                        </span>
+                                    }
+                                </td>
+
+
+                                <td>
+                                    @if (item.CanManageProducts)
+                                    {
+                                        <span class="badge bg-success">
+                                            Yes
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            No
+                                        </span>
+                                    }
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.userID"
+                                       class="btn btn-info btn-sm">
+                                        Details
+                                    </a>
+
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@item.userID"
+                                       class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@item.userID"
+                                       class="btn btn-danger btn-sm">
+                                        Delete
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-muted">
+                                No admins found.
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

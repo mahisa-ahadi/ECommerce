@@ -1,0 +1,70 @@
+﻿@model ECommerce.Models.products
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" method="post">
+
+
+    <input type="hidden" asp-for="productID" />
+
+    <div class="card mb-6">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Organize</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-6">
+                <label class="form-label" asp-for="productName"></label>
+                <input type="text" class="form-control" asp-for="productName" />
+    </div>
+    <div>
+        <label asp-for="productDescription"></label>
+        <input asp-for="productDescription" />
+    </div>
+
+
+
+            <div class="mb-6">
+        <label  class="form-label" asp-for="price"></label>
+        <input type="text" class="form-control" asp-for="price" />
+    </div>
+
+    <div>
+        <label asp-for="stockQuantity"></label>
+        <input asp-for="stockQuantity" />
+    </div>
+
+    <div>
+        <label asp-for="category"></label>
+        <input asp-for="category" />
+    </div>
+
+    <div>
+        <label asp-for="imageURL"></label>
+        <input asp-for="imageURL" />
+    </div>
+
+    <div>
+        <label asp-for="IsActive"></label>
+        <input asp-for="IsActive" />
+    </div>
+
+
+
+            <div class="mb-6">
+                <label class="form-label" for="ecommerce-product-price">Base Price</label>
+                <input type="number" class="form-control" id="ecommerce-product-price" placeholder="Price" name="productPrice" aria-label="Product price">
+            </div>
+
+            <div class="mb-6">
+                <label class="form-label" for="ecommerce-product-price">Base Price</label>
+                <input type="number" class="form-control" id="ecommerce-product-price" placeholder="Price" name="productPrice" aria-label="Product price">
+            </div>
+
+
+    <button type="submit">
+        Save Changes
+    </button>
+    </div>
+    </div>
+
+</form>

@@ -1,0 +1,94 @@
+﻿@model ECommerce.Models.Addresses
+
+@{
+    ViewData["Title"] = "Address Details";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+            <h3>Address Details</h3>
+        </div>
+
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-4">
+                    Address ID
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.AddressID
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Exact Address
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.exactAddress
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    Default Address
+                </dt>
+
+                <dd class="col-sm-8">
+
+                    @if (Model.isDefault)
+                    {
+                        <span class="badge bg-success">
+                            Yes
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">
+                            No
+                        </span>
+                    }
+
+                </dd>
+
+
+                <dt class="col-sm-4">
+                    User ID
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.userID
+                </dd>
+
+            </dl>
+
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.AddressID"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+
+            <a asp-action="Delete"
+               asp-route-id="@Model.AddressID"
+               class="btn btn-danger">
+                Delete
+            </a>
+
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
