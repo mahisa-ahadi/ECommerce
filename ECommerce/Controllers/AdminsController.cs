@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ECommerce.Models;
+using ECommerce.Models.ViewModels;
 
 namespace ECommerce.Controllers
 {
@@ -40,16 +41,38 @@ namespace ECommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Admins admins)
+        public IActionResult Create(AdminCreateViewModel model)
         {
-            if (ModelState.IsValid)
-            {  
-                _context.Admins.Add(admins);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(admins);
+            // Create User first
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var admin = new Admins
+            {
+                userID = Guid.NewGuid(),
+
+                // User properties
+                name = model.name,
+                phone = model.phone,
+                passwordHash = model.passwordHash,
+                Role = role.Admin,
+                IsActive = true,
+
+                // Admin properties
+                HireDate = model.HireDate,
+                department = model.department,
+                AccessLevel = model.AccessLevel,
+                CanManageUsers = model.CanManageUsers,
+                CanManageProducts = model.CanManageProducts
+            };
+
+            _context.Admins.Add(admin);
+            _context.SaveChanges();
+
+
+            return RedirectToAction(nameof(Index));
         }
+        
 
         //soft delete
 

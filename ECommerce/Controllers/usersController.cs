@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerce.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
@@ -26,6 +27,54 @@ namespace ECommerce.Controllers
             if (user == null)
             {
                 return NotFound();
+            }
+            return View(user);
+        }
+
+        //insert
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(users user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.users.Add(user);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+            return View(user);
+        }
+
+
+        //update
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            var user = _context.users.Find(id);
+            if (user == null)
+                return NotFound();
+            return View(user);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(users user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.users.Update(user);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+
             }
             return View(user);
         }
