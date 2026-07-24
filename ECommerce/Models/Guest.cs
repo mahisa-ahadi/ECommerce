@@ -18,5 +18,7 @@ namespace ECommerce.Models
 		[Required]
 		[Column("SessionExpiryTime")]
 		public DateTime SessionExpiryTime { get; set; } = DateTime.UtcNow.AddHours(1);
+
+		public Cart cart { get; set; }
     }	
 	}

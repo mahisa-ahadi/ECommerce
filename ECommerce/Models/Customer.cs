@@ -32,5 +32,7 @@ namespace ECommerce.Models
         public PaymentMethod? PrePaymentMethod { get; set; } = new PaymentMethod();
 
         public  ICollection<Orders> orders { get; set; }
+
+        public ICollection<Cart> carts { get; set; }
     }
 }
