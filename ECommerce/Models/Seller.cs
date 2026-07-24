@@ -33,8 +33,8 @@ namespace ECommerce.Models
         public String? StoreDescription { get; set; } = string.Empty;
 
 
-        [Column("StoreRating")]
-        public double? StoreRating { get; set; } = 0.0;
+        [Column("sellerRating")]
+        public decimal? sellerRating { get; set; } = 0.0m;
         //one seller can have many products
         //public ICollection<Products> products { get; set; } = new List<Products>();
     }

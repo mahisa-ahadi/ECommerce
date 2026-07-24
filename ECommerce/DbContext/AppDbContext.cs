@@ -29,6 +29,12 @@ using Microsoft.EntityFrameworkCore;
         modelBuilder.Entity<users>()
         .Property(u => u.Role)
         .HasConversion<string>();
+
+         modelBuilder.Entity<Customer>()
+        .HasOne(c => c.PreferredPaymentMethod)
+        .WithMany(pm => pm.Customers)
+        .HasForeignKey(c => c.PreferredPaymentMethodID)
+        .OnDelete(DeleteBehavior.SetNull);
     }
     
         public DbSet<Addresses> Addresses { get; set; }

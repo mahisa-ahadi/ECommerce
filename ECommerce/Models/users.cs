@@ -29,7 +29,7 @@ namespace ECommerce.Models
 
         [Required]
         [Column("role")]
-        public role Role { get; set; } = role.Guest;
+        public role Role { get; set; } 
 
 
         [Required]

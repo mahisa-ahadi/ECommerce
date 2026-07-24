@@ -29,10 +29,12 @@ namespace ECommerce.Models
         [Column("PreferredPaymentMethodID")]
         public Guid? PreferredPaymentMethodID { get; set; } //FK to PaymentMethods table
 
-        public PaymentMethod? PrePaymentMethod { get; set; } = new PaymentMethod();
 
+        [ForeignKey(nameof(PreferredPaymentMethodID))]
+        public PaymentMethod PreferredPaymentMethod { get; set; }
         public  ICollection<Orders> orders { get; set; }
 
         public ICollection<Cart> carts { get; set; }
+        
     }
 }

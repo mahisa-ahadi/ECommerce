@@ -75,5 +75,28 @@ namespace ECommerce.Controllers
             return RedirectToAction("Index");
 
         }
+
+        //update
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            var admin = _context.Admins.Find(id);
+            if( admin == null)
+                return NotFound();
+            return View(admin);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Admins admins)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Admins.Update(admins);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(admins);
+        }
+
     }
 }

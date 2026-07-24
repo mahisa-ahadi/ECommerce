@@ -1,0 +1,131 @@
+﻿@model ECommerce.Models.Admins
+
+@{
+    ViewData["Title"] = "Edit Admin";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Edit Admin</h3>
+        </div>
+
+
+        <div class="card-body">
+
+            <form asp-action="Edit" method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- Primary Key -->
+                <input type="hidden" asp-for="userID" />
+
+
+                <div class="mb-3">
+                    <label asp-for="HireDate" class="form-label">
+                        Hire Date
+                    </label>
+
+                    <input asp-for="HireDate"
+                           class="form-control"
+                           type="date" />
+
+                    <span asp-validation-for="HireDate"
+                          class="text-danger">
+                    </span>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label asp-for="department" class="form-label">
+                        Department
+                    </label>
+
+                    <input asp-for="department"
+                           class="form-control" />
+
+                    <span asp-validation-for="department"
+                          class="text-danger">
+                    </span>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label asp-for="AccessLevel" class="form-label">
+                        Access Level
+                    </label>
+
+                    <select asp-for="AccessLevel"
+                            class="form-select"
+                            asp-items="Html.GetEnumSelectList<ECommerce.Models.AdminAccessLevel>()">
+                    </select>
+
+                    <span asp-validation-for="AccessLevel"
+                          class="text-danger">
+                    </span>
+                </div>
+
+
+
+                <div class="form-check mb-3">
+
+                    <input asp-for="CanManageUsers"
+                           class="form-check-input" />
+
+                    <label asp-for="CanManageUsers"
+                           class="form-check-label">
+                        Can Manage Users
+                    </label>
+
+                </div>
+
+
+
+                <div class="form-check mb-4">
+
+                    <input asp-for="CanManageProducts"
+                           class="form-check-input" />
+
+                    <label asp-for="CanManageProducts"
+                           class="form-check-label">
+                        Can Manage Products
+                    </label>
+
+                </div>
+
+
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Save Changes
+                    </button>
+
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

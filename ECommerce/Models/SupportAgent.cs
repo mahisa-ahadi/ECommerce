@@ -31,7 +31,7 @@ namespace ECommerce.Models
 
         [Required]
         [Column("PerformanceRating")]
-        public double PerformanceRating { get; set; } = 0.0;
+        public decimal PerformanceRating { get; set; } = 0.0m;
 
 
     }

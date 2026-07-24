@@ -40,7 +40,8 @@ namespace ECommerce.Models
 
         public Orders Order { get; set; }    // Navigation Property
 
-        public PaymentMethod paymentMethod { get; set; }
+        [ForeignKey(nameof(methodID))]
+         public PaymentMethod paymentMethod { get; set; }
     }
     
 }
