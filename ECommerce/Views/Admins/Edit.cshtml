@@ -4,127 +4,85 @@
     ViewData["Title"] = "Edit Admin";
 }
 
-<div class="container mt-5">
-
+<div class="container mt-4">
     <div class="card shadow">
-
         <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Edit Admin</h3>
+            <h3>Edit Admin</h3>
         </div>
 
-
         <div class="card-body">
-
             <form asp-action="Edit" method="post">
 
                 @Html.AntiForgeryToken()
 
-                <!-- Primary Key -->
                 <input type="hidden" asp-for="userID" />
 
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <h5 class="mb-3">User Information</h5>
 
                 <div class="mb-3">
-                    <label asp-for="HireDate" class="form-label">
-                        Hire Date
-                    </label>
-
-                    <input asp-for="HireDate"
-                           class="form-control"
-                           type="date" />
-
-                    <span asp-validation-for="HireDate"
-                          class="text-danger">
-                    </span>
+                    <label asp-for="name" class="form-label"></label>
+                    <input asp-for="name" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
                 </div>
 
-
-
                 <div class="mb-3">
-                    <label asp-for="department" class="form-label">
-                        Department
-                    </label>
-
-                    <input asp-for="department"
-                           class="form-control" />
-
-                    <span asp-validation-for="department"
-                          class="text-danger">
-                    </span>
+                    <label asp-for="phone" class="form-label"></label>
+                    <input asp-for="phone" class="form-control" />
+                    <span asp-validation-for="phone" class="text-danger"></span>
                 </div>
 
+                <hr />
 
+                <h5 class="mb-3">Admin Information</h5>
 
                 <div class="mb-3">
-                    <label asp-for="AccessLevel" class="form-label">
-                        Access Level
-                    </label>
+                    <label asp-for="HireDate" class="form-label"></label>
+                    <input asp-for="HireDate" type="date" class="form-control" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
 
+                <div class="mb-3">
+                    <label asp-for="department" class="form-label"></label>
+                    <input asp-for="department" class="form-control" />
+                    <span asp-validation-for="department" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccessLevel" class="form-label"></label>
                     <select asp-for="AccessLevel"
                             class="form-select"
-                            asp-items="Html.GetEnumSelectList<ECommerce.Models.AdminAccessLevel>()">
+                            asp-items="Html.GetEnumSelectList<AdminAccessLevel>()">
                     </select>
-
-                    <span asp-validation-for="AccessLevel"
-                          class="text-danger">
-                    </span>
+                    <span asp-validation-for="AccessLevel" class="text-danger"></span>
                 </div>
-
-
 
                 <div class="form-check mb-3">
-
-                    <input asp-for="CanManageUsers"
-                           class="form-check-input" />
-
-                    <label asp-for="CanManageUsers"
-                           class="form-check-label">
-                        Can Manage Users
-                    </label>
-
+                    <input asp-for="CanManageUsers" class="form-check-input" />
+                    <label asp-for="CanManageUsers" class="form-check-label"></label>
                 </div>
-
-
 
                 <div class="form-check mb-4">
-
-                    <input asp-for="CanManageProducts"
-                           class="form-check-input" />
-
-                    <label asp-for="CanManageProducts"
-                           class="form-check-label">
-                        Can Manage Products
-                    </label>
-
+                    <input asp-for="CanManageProducts" class="form-check-input" />
+                    <label asp-for="CanManageProducts" class="form-check-label"></label>
                 </div>
 
+                <button type="submit" class="btn btn-success">
+                    Save Changes
+                </button>
 
-
-                <div class="d-flex gap-2">
-
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Save Changes
-                    </button>
-
-
-                    <a asp-action="Index"
-                       class="btn btn-secondary">
-                        Cancel
-                    </a>
-
-                </div>
-
+                <a asp-action="Index" class="btn btn-secondary">
+                    Cancel
+                </a>
 
             </form>
-
         </div>
-
     </div>
-
 </div>
 
-
-@section Scripts {
+@section Scripts
+{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

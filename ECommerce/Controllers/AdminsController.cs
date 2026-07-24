@@ -110,15 +110,27 @@ namespace ECommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Admins admins)
+        public IActionResult Edit(AdminEditViewModel model)
         {
-            if(ModelState.IsValid)
-            {
-                _context.Admins.Update(admins);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(admins);
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var admin = _context.Admins.Find(model.userID);
+
+            if (admin == null)
+                return NotFound();
+
+            admin.name = model.name;
+            admin.phone = model.phone;
+            admin.HireDate = model.HireDate;
+            admin.department = model.department;
+            admin.AccessLevel = model.AccessLevel;
+            admin.CanManageUsers = model.CanManageUsers;
+            admin.CanManageProducts = model.CanManageProducts;
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

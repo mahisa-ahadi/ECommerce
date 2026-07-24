@@ -1,5 +1,6 @@
 ﻿using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ECommerce.Controllers
 {
@@ -35,6 +36,16 @@ namespace ECommerce.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Roles = Enum.GetValues(typeof(role))
+                .Cast<role>()
+                .Where(r => r != role.Admin)
+                .Select(r => new SelectListItem
+                {
+                    Value = r.ToString(),
+                    Text = r.ToString()
+                })
+                .ToList();
+
             return View();
         }
 
