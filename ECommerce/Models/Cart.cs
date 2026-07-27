@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ECommerce.Models
 {
-    [Table("Cart")]
-    public class Cart
+    [Table("cart")]
+    public class cart
     {
         [Key]
-        [Column("CartID")]
-        public Guid CartID { get; set; } // Primary Key
+        [Column("cartID")]
+        public Guid cartID { get; set; } // Primary Key
 
         
         [Required]
@@ -18,11 +18,12 @@ namespace ECommerce.Models
         [Column("customerID")]
         public Guid? customerID { get; set; }
 
-        [Column("geustID")]
+        [Column("guestID")]
         public Guid? guestID { get; set; }
 
         public Customer customer { get; set; }
         public Guest guest { get; set; }
+        public ICollection<CartItem> cartItems { get; set; }
 
     }
 }

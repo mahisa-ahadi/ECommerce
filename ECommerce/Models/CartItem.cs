@@ -7,8 +7,8 @@ namespace ECommerce.Models
     public class CartItem
     {
         [Key]
-        [Column("CartItemID")]
-        public Guid CartItemID { get; set; } // Primary Key
+        [Column("cartItemID")]
+        public Guid cartItemID { get; set; } // Primary Key
 
         [Required]
         [Column("ProductID")]
@@ -21,7 +21,7 @@ namespace ECommerce.Models
         [Column("Quantity")]
         public int Quantity { get; set; } = 0;
 
-        public ICollection<Cart> carts { get; set; }= new List<Cart>(); // Navigation property to Cart
+        public Cart carts { get; set; } // Navigation property to Cart
 
         public ICollection<products> products { get; set; } = new List<products>(); // Navigation property to Products
 

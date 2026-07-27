@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ECommerce.Models.Cart>
+<table>
+	<tr>
+		<th> cartID</th>
+		<th> createdAt</th>
+		<th>customerID</th>
+		<th>guestID</th>
+	</tr>
+	@foreach(var c in Model)
+	{
+		<tr><td>@c.CartID</td></tr>
+		<tr><td>@c.createdAt</td></tr>
+		<tr><td>@c.customerID</td></tr>
+		<tr><td>@c.guestID</td></tr>
+
+
+	}
+</table>

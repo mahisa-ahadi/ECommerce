@@ -35,6 +35,11 @@ using Microsoft.EntityFrameworkCore;
         .WithMany(pm => pm.Customers)
         .HasForeignKey(c => c.PreferredPaymentMethodID)
         .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<CartItem>()
+        .HasOne(ci => ci.carts)
+        .WithMany(c => c.cartItems)
+        .HasForeignKey(ci => ci.cartItemID);
     }
     
         public DbSet<Addresses> Addresses { get; set; }
