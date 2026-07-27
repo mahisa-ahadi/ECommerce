@@ -90,5 +90,29 @@ namespace ECommerce.Controllers
             return View(user);
         }
 
+        //soft Delete
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            var user= _context.users.Find(id);
+            if (user == null)
+               return NotFound();
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(users user)
+        {
+            var userToDelete = _context.users.Find(user.userID);
+
+            if (userToDelete != null)
+            {
+                userToDelete.IsActive = false;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
