@@ -21,8 +21,8 @@ namespace ECommerce.Models
         [Column("guestID")]
         public Guid? guestID { get; set; }
 
-        public Customer customer { get; set; }
-        public Guest guest { get; set; }
+        public Customer? customer { get; set; }
+        public Guest? guest { get; set; }
         public ICollection<CartItem> cartItems { get; set; }
 
     }

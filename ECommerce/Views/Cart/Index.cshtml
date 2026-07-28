@@ -1,17 +1,18 @@
-﻿@model IEnumerable<ECommerce.Models.Cart>
+﻿@model IEnumerable<ECommerce.Models.cart>
 <table>
 	<tr>
-		<th> cartID</th>
-		<th> createdAt</th>
-		<th>customerID</th>
-		<th>guestID</th>
+		<th style="padding:10px;"> cartID</th>
+		<th style="padding:10px;"> createdAt</th>
+		<th style="padding:10px;">customerID</th>
+		<th style="padding:10px;">guestID</th>
 	</tr>
 	@foreach(var c in Model)
 	{
-		<tr><td>@c.CartID</td></tr>
-		<tr><td>@c.createdAt</td></tr>
-		<tr><td>@c.customerID</td></tr>
-		<tr><td>@c.guestID</td></tr>
+		<tr><td style="padding:10px;">@c.cartID</td>
+			<td style="padding:10px;">@c.createdAt</td>
+			<td style="padding:10px;">@c.customerID</td>
+			<td style="padding:10px;">@c.guestID</td>
+		</tr>
 
 
 	}

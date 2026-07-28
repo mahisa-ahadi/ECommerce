@@ -34,7 +34,7 @@ namespace ECommerce.Models
         public PaymentMethod PreferredPaymentMethod { get; set; }
         public  ICollection<Orders> orders { get; set; }
 
-        public ICollection<Cart> carts { get; set; }
+        public ICollection<cart> carts { get; set; }
         
     }
 }

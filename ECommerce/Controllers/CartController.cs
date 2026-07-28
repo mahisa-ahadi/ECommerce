@@ -19,15 +19,15 @@ namespace ECommerce.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var carts = _context.Cart.ToList();
-            return View(carts);
+            var Carts = _context.carts.ToList();
+            return View(Carts);
         }
 
         //select one 
         [HttpGet]
         public IActionResult Details(Guid id)
         {
-            var cart = _context.Cart.FirstOrDefault(x => x.CartID == id);
+            var cart = _context.carts.FirstOrDefault(x => x.cartID == id);
             if (cart == null) 
                 return NotFound();
             return View(cart);
@@ -41,11 +41,11 @@ namespace ECommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult create(Cart cart)
+        public IActionResult create(cart carts)
         {
             if(ModelState.IsValid)
             {   
-                _context.Cart.Add(cart);
+                _context.carts.Add(carts);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -56,34 +56,34 @@ namespace ECommerce.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id) 
         {
-            var cart = _context.Cart.Find(id);
+            var cart = _context.carts.Find(id);
             return View(cart);
         }
 
         [HttpPost]
-        public IActionResult Edit(Cart cart)
+        public IActionResult Edit(cart carts)
         {
             if (ModelState.IsValid)
             {
-                _context.Cart.Update(cart);
+                _context.carts.Update(carts);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cart);
+            return View(carts);
         }
 
         //Delete
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            var cart = _context.Cart.Find(id);
+            var cart = _context.carts.Find(id);
             return View(cart);
         }
 
         [HttpPost]
-        public IActionResult Delete(Cart cart)
+        public IActionResult Delete(cart carts)
         {
-            _context.Cart.Remove(cart);
+            _context.carts.Remove(carts);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

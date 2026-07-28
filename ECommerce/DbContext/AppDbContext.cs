@@ -44,7 +44,7 @@ using Microsoft.EntityFrameworkCore;
     
         public DbSet<Addresses> Addresses { get; set; }
         public DbSet<Admins> Admins { get; set; }
-        public DbSet<Cart> Cart {  get; set; }
+        public DbSet<cart> carts {  get; set; }
         public DbSet<CartItem>  CartItem { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Guest> Guest { get; set; }
