@@ -1,0 +1,30 @@
+﻿@model ECommerce.Models.cart
+
+<h1>Create new cart</h1>
+
+<button type="submit" onclick="generateGuid()">
+	save
+</button>
+
+<form  method="post">
+	<div>
+		<label>CustomerID</label>
+		<input type="text">
+	</div>
+	<br>
+	
+	<div>
+		<label>Created at</label>
+		<input type="date" />
+	</div>
+	
+	<div>
+		<input type="submit" />
+	</div>
+</form>
+
+	<script>
+		function generateGuid(){
+			document.getElementById("cartID").Value =crypto.randomUUID(); 
+		}
+	</script>
