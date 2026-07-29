@@ -3,85 +3,89 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
-    public class OrderItemController : Controller
+    public class OrdersController : Controller
     {
         private readonly AppDbContext _context;
-        public OrderItemController(AppDbContext context)
-        {  _context = context; }
+        public OrdersController (AppDbContext context)
+        {
+            _context = context;
+        }
 
         //select all
         [HttpGet]
         public IActionResult Index()
         {
-            var orderItem = _context.OrderItem.ToList();
-            if (orderItem == null) {return NotFound();} 
-            return View(orderItem);
+            var orders = _context.Orders.ToList();
+            if(orders==null)
+                return NotFound();
+            return View(orders);
         }
 
         //select one
         [HttpGet]
         public IActionResult Details(Guid id)
         {
-            var orderItem = _context.OrderItem.Find(id);
-            if (orderItem == null) { return NotFound(); }
-            return View(orderItem);
+            var order=_context.Orders.Find(id);
+            if(order==null)
+                return NotFound();
+            return View(order);
         }
 
         //insert
-        [HttpPost]
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(OrderItem orderItem)
+        public IActionResult Create(Orders orders)
         {
             if (ModelState.IsValid)
             {
-                _context.OrderItem.Add(orderItem);
+                _context.Orders.Add(orders);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(orderItem);
+            return View(orders);
         }
 
         //update
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
-            var orderItem =_context.OrderItem.Find(id);
-            if (orderItem == null) { return NotFound();}
-            return View(orderItem);
+            var order= _context.Orders.Find(id);
+            if (order==null)
+                return NotFound();
+            return View(order);
         }
+
         [HttpPost]
-        public IActionResult Edit(OrderItem orderItem)
+        public IActionResult Edit(Orders orders)
         {
             if (ModelState.IsValid)
             {
-                _context.OrderItem.Remove(orderItem);
+                _context.Orders.Update(orders);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(orderItem);
+            return View(orders);
         }
+
         //Delete
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            var orderItem= _context.OrderItem.Find(id);
-
-            if (orderItem == null)
-            {
+            var order = _context.Orders.Find(id);
+            if (order == null)
                 return NotFound();
-            }
-            return View(orderItem);
+            return View(order);
         }
 
         [HttpPost]
-        public IActionResult Delete(OrderItem orderItem)
+        public IActionResult Delete(Orders orders)
         {
-            _context.OrderItem.Remove(orderItem);
+            _context.Orders.Remove(orders);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
