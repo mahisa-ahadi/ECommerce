@@ -43,13 +43,17 @@ namespace ECommerce.Controllers
         [HttpPost]
         public IActionResult create(cart carts)
         {
-            if(ModelState.IsValid)
-            {   
-                _context.carts.Add(carts);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+            ModelState.Remove("cartItems");
+
+            if (!ModelState.IsValid)
+            {
+                return View(carts);
             }
-            return View();
+
+            _context.carts.Add(carts);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         //update
@@ -63,13 +67,27 @@ namespace ECommerce.Controllers
         [HttpPost]
         public IActionResult Edit(cart carts)
         {
-            if (ModelState.IsValid)
-            {
-                _context.carts.Update(carts);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(carts);
+            ModelState.Remove("cartItems");
+            if (!ModelState.IsValid)
+                return View(carts);
+            var existingCart = _context.carts.Find(carts.cartID);
+            if (existingCart == null)
+                return NotFound();
+            existingCart.guestID = carts.guestID;
+            existingCart.customerID = carts.customerID;
+            if (existingCart.guestID != null)
+                existingCart.customerID = null;
+            if(existingCart.customerID != null)
+                existingCart.guestID = null;
+            var pairExists = _context.Guest.Any(g =>
+    g.userID == existingCart.guestID &&
+    g.GuestCartID == existingCart.cartID);
+
+            Console.WriteLine($"GuestID: {existingCart.guestID}");
+            Console.WriteLine($"CartID: {existingCart.cartID}");
+            Console.WriteLine($"Pair exists: {pairExists}");
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //Delete

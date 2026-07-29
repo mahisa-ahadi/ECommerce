@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ECommerce.Models.payment>
+
+<h2>Payments</h2>
+
+<table class="table">
+    <tr>
+        <th>Payment ID</th>
+        <th>Order ID</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.PaymentID</td>
+            <td>@item.OrderID</td>
+            <td>@item.paymentStatus</td>
+            <td>@item.TransactionDate</td>
+        </tr>
+    }
+</table>

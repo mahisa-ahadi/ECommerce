@@ -33,7 +33,7 @@ namespace ECommerce.Models
         [Column("methodID")]
         public Guid? methodID { get; set; } // Foreign Key to PaymentMethod table
 
-        [Column("paymentSatus")]
+        [Column("paymentStatus")]
         public PaymentStatus? paymentStatus { get; set; } = PaymentStatus.Pending;
 
         public DateTime TransactionDate { get; set; } = DateTime.UtcNow;

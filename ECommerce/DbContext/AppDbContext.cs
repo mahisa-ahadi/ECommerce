@@ -40,6 +40,10 @@ using Microsoft.EntityFrameworkCore;
         .HasOne(ci => ci.carts)
         .WithMany(c => c.cartItems)
         .HasForeignKey(ci => ci.cartItemID);
+
+        modelBuilder.Entity<payment>()
+    .Property(p => p.paymentStatus)
+    .HasConversion<string>();
     }
     
         public DbSet<Addresses> Addresses { get; set; }

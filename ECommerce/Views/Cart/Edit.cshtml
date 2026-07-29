@@ -1,15 +1,21 @@
-﻿
+﻿```cshtml
 @model ECommerce.Models.cart
 
 @{
-    ViewData["Title"] = "Create Cart";
+    ViewData["Title"] = "Edit Cart";
 }
 
-<h2>Create Cart</h2>
-<div asp-validation-summary="All" class="text-danger"></div>
+<h2>Edit Cart</h2>
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="cartID" />
+
+    <div class="mb-3">
+        <label class="form-label">Created At</label>
+        <input asp-for="createdAt" class="form-control" readonly />
+    </div>
 
     <div class="mb-3">
         <label class="form-label">Cart Owner Type</label>
@@ -20,20 +26,20 @@
         </select>
     </div>
 
-    <div class="mb-3" id="customerDiv" style="display:none;">
+    <div class="mb-3" id="customerDiv">
         <label asp-for="customerID" class="form-label"></label>
         <input asp-for="customerID" class="form-control" />
         <span asp-validation-for="customerID" class="text-danger"></span>
     </div>
 
-    <div class="mb-3" id="guestDiv" style="display:none;">
+    <div class="mb-3" id="guestDiv">
         <label asp-for="guestID" class="form-label"></label>
         <input asp-for="guestID" class="form-control" />
         <span asp-validation-for="guestID" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">
-        Create
+        Save Changes
     </button>
 
     <a asp-action="Index" class="btn btn-secondary">
@@ -51,25 +57,32 @@
         const customerDiv = document.getElementById("customerDiv");
         const guestDiv = document.getElementById("guestDiv");
 
-        ownerType.addEventListener("change", function () {
+        function updateFields() {
 
-            if (this.value === "customer") {
+            if (ownerType.value === "customer") {
                 customerDiv.style.display = "block";
                 guestDiv.style.display = "none";
-
-                document.getElementById("guestID").value = "";
             }
-            else if (this.value === "guest") {
-                guestDiv.style.display = "block";
+            else if (ownerType.value === "guest") {
                 customerDiv.style.display = "none";
-
-                document.getElementById("customerID").value = "";
+                guestDiv.style.display = "block";
             }
             else {
-                customerDiv.style.display = "none";
-                guestDiv.style.display = "none";
+                customerDiv.style.display = "block";
+                guestDiv.style.display = "block";
             }
-        });
+        }
+
+        if (document.getElementById("customerID").value) {
+            ownerType.value = "customer";
+        }
+        else if (document.getElementById("guestID").value) {
+            ownerType.value = "guest";
+        }
+
+        updateFields();
+
+        ownerType.addEventListener("change", updateFields);
     </script>
 }
 ```

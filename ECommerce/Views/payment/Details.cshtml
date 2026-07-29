@@ -1,0 +1,53 @@
+﻿
+@model ECommerce.Models.payment
+
+@{
+    ViewData["Title"] = "Payment Details";
+}
+
+<h2>Payment Details</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            Payment ID
+        </dt>
+        <dd class="col-sm-9">
+            @Model.PaymentID
+        </dd>
+
+        <dt class="col-sm-3">
+            Order ID
+        </dt>
+        <dd class="col-sm-9">
+            @Model.OrderID
+        </dd>
+
+        <dt class="col-sm-3">
+            Method ID
+        </dt>
+        <dd class="col-sm-9">
+            @Model.methodID
+        </dd>
+
+        <dt class="col-sm-3">
+            Payment Status
+        </dt>
+        <dd class="col-sm-9">
+            @Model.paymentStatus
+        </dd>
+
+        <dt class="col-sm-3">
+            Transaction Date
+        </dt>
+        <dd class="col-sm-9">
+            @Model.TransactionDate
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+```
