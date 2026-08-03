@@ -17,6 +17,22 @@
 				<td>@cartitem.ProductID</td>
 				<td>@cartitem.CartID</td>
 				<td>@cartitem.Quantity</td>
+				<td>
+					<a asp-action="Details"
+					   asp-route-id="@cartitem.cartItemID">
+					Details
+				</a>
+				|
+				<a asp-action="Edit"
+				asp-route-id="@cartitem.cartItemID">
+			Edit
+			</a>
+			|
+			<a asp-action="Delete"
+			asp-route-id="@cartitem.cartItemID">
+		    Delete
+		</a>
+				</td>
 			</tr>
 		}
 	</tbody>
