@@ -79,13 +79,6 @@ namespace ECommerce.Controllers
                 existingCart.customerID = null;
             if(existingCart.customerID != null)
                 existingCart.guestID = null;
-            var pairExists = _context.Guest.Any(g =>
-    g.userID == existingCart.guestID &&
-    g.GuestCartID == existingCart.cartID);
-
-            Console.WriteLine($"GuestID: {existingCart.guestID}");
-            Console.WriteLine($"CartID: {existingCart.cartID}");
-            Console.WriteLine($"Pair exists: {pairExists}");
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
