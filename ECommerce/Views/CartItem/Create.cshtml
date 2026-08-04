@@ -1,0 +1,22 @@
+﻿@model  CartItem
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <strong>ProductID:</strong>
+        <input asp-for="ProductID" />
+    </div>
+
+    <div>
+        <strong>CartID:</strong>
+        <input asp-for="CartID" />
+    </div>
+
+    <div>
+        <strong>Quantity:</strong>
+        <input asp-for="Quantity" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+

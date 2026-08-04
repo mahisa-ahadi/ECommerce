@@ -85,14 +85,10 @@ namespace ECommerce.Controllers
 
         //insert
         [HttpGet]
-        public IActionResult Create(Guid id)
+        public IActionResult Create()
         {
-            var cartItems = _context.CartItem.Find(id);
-            if (cartItems == null)
-            {
-                return NotFound();
-            }
-            return View(cartItems);
+            
+            return View();
         }
 
         [HttpPost]
@@ -101,6 +97,7 @@ namespace ECommerce.Controllers
        
             if (ModelState.IsValid)
             {
+                cartItem.cartItemID = Guid.NewGuid();
                 _context.CartItem.Add(cartItem);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

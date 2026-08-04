@@ -21,7 +21,7 @@ namespace ECommerce.Models
         [Column("Quantity")]
         public int Quantity { get; set; } = 0;
 
-        public cart carts { get; set; } // Navigation property to Cart
+        public cart? carts { get; set; } // Navigation property to Cart
 
         public ICollection<products> products { get; set; } = new List<products>(); // Navigation property to Products
 
