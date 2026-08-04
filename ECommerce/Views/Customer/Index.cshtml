@@ -4,12 +4,9 @@
 <table>
     <thead>
         <tr>
-            <th>CustomerID</th>
             <th>Name</th>
             <th>WishlistVisibility</th>
             <th>LoyaltyPoints</th>
-            <th>DateOfBirth</th>
-            <th>PreferredPaymentMethodID</th>
             <th>Actions</th>
 		</tr>
    </thead>
@@ -17,12 +14,9 @@
        @foreach (var customer in Model)
         {
             <tr>
-                <td>@customer.userID</td>
                 <td>@customer.name</td>
                 <td>@customer.WishlistVisibility</td>
                 <td>@customer.LoyaltyPoints</td>
-                <td>@customer.DateOfBirth.ToShortDateString()</td>
-				<td>@customer.PreferredPaymentMethodID</td>
                 <td>
                     <a asp-action="Details"
                        asp-route-id="@customer.userID">
