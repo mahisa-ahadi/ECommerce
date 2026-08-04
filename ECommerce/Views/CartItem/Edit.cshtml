@@ -1,4 +1,7 @@
 ﻿@model CartItem
+<form method="post">
+	@Html.HiddenFor(m => m.cartItemID)
+
 
 <div>
 	<strong>cartItemID:</strong>
@@ -6,18 +9,18 @@
 </div>
 <div>
 	<strong>ProductID:</strong>
-	<input type="text" name="ProductID" />	
+	<input type="text" name="ProductID" value="@Model.ProductID" />	
 </div>
 <div>
 	<strong>CartID:</strong>
-	<input type="text" name="CartID"/>
+	<input type="text" name="CartID" value="@Model.CartID"/>
 </div>
 <div>
 	<strong>Quantity:</strong>
-	<input type="number" name="Quantity"/>
+	<input type="number" name="Quantity" value="@Model.Quantity"/>
 </div>
 <div>
 	<button type="submit">save</button>
 </div>
 
-
+</form>

@@ -43,16 +43,18 @@ namespace ECommerce.Controllers
             return View(item);
         }
 
+
         [HttpPost]
         public IActionResult Edit(CartItem cartItem)
         {
-            if (ModelState.IsValid)
-            {
-                _context.CartItem.Update(cartItem);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(cartItem);
+            var existing = _context.CartItem.Find(cartItem.cartItemID);
+                if (existing == null)
+                return NotFound();
+            existing.ProductID = cartItem.ProductID;
+            existing.CartID = cartItem.CartID;
+            existing.Quantity = cartItem.Quantity;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //delete

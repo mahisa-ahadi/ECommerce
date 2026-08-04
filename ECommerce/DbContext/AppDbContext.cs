@@ -39,7 +39,7 @@ using Microsoft.EntityFrameworkCore;
         modelBuilder.Entity<CartItem>()
         .HasOne(ci => ci.carts)
         .WithMany(c => c.cartItems)
-        .HasForeignKey(ci => ci.cartItemID);
+        .HasForeignKey(ci => ci.CartID);
 
         modelBuilder.Entity<payment>()
     .Property(p => p.paymentStatus)
