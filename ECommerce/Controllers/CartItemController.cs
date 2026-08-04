@@ -70,15 +70,16 @@ namespace ECommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(CartItem cartItem)
+        public IActionResult DeleteConfirmed(Guid cartItemID)
         {
-            if (ModelState.IsValid)
+            var item = _context.CartItem.Find(cartItemID);
+            if (item == null)
             {
-                 _context.CartItem.Remove(cartItem);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            return View(cartItem) ;
+            _context.CartItem.Remove(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

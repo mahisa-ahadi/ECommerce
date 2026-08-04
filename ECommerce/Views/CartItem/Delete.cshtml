@@ -1,0 +1,11 @@
+﻿@model CartItem
+<form asp-action="DeleteConfirmed" method="post">
+	@Html.HiddenFor(m=>m.cartItemID)
+	<div>
+
+	
+	<strong>CartItemID:</strong>
+		@Model.cartItemID
+	</div>
+	<button type="submit">Delete</button>
+</form>
