@@ -23,6 +23,8 @@ namespace ECommerce.Models
 
         public cart? carts { get; set; } // Navigation property to Cart
 
+        //public string productName { get; set; } = string.Empty; // Product name for display purposes
+
         public ICollection<products> products { get; set; } = new List<products>(); // Navigation property to Products
 
 

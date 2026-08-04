@@ -1,11 +1,11 @@
-﻿@model IEnumerable<ECommerce.Models.CartItem>
+﻿@model IEnumerable<ECommerce.Models.CartItemViewModel>
 <h2>Cart Item list</h2>
 <table class="table">
 	<thead>
 		<tr>
 			<th>cartItemID</th>
 			<th>productID</th>
-			<th>cartID</th>
+			<th>productName</th>
 			<th>quantity</th>
 		</tr>
 	</thead>
@@ -14,8 +14,8 @@
 		{
 			<tr>
 				<td>@cartitem.cartItemID</td>
-				<td>@cartitem.ProductID</td>
-				<td>@cartitem.CartID</td>
+				<td>@cartitem.productId</td>
+				<td>@cartitem.productName</td>
 				<td>@cartitem.Quantity</td>
 				<td>
 					<a asp-action="Details"

@@ -15,7 +15,22 @@ namespace ECommerce.Controllers
         public IActionResult Index()
         {
             var cartItem = _context.CartItem.ToList();
-            return View(cartItem);
+            List<CartItemViewModel> cartItemViewModels = new List<CartItemViewModel>();
+            foreach (var item in cartItem)
+            {
+                var product = _context.products.Find(item.ProductID);
+                if (product != null)
+                {
+                    cartItemViewModels.Add(new CartItemViewModel
+                    {
+                        cartItemID = item.cartItemID,
+                        productId = product.productID,
+                        productName = product.productName,
+                        Quantity = item.Quantity
+                    });
+                }
+            }
+            return View(cartItemViewModels);
         }
 
         //select one
@@ -50,7 +65,11 @@ namespace ECommerce.Controllers
             var existing = _context.CartItem.Find(cartItem.cartItemID);
                 if (existing == null)
                 return NotFound();
+
+            var product = _context.products.Find(cartItem.ProductID);
+
             existing.ProductID = cartItem.ProductID;
+           
             existing.CartID = cartItem.CartID;
             existing.Quantity = cartItem.Quantity;
             _context.SaveChanges();
