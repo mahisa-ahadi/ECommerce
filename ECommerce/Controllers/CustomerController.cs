@@ -1,5 +1,7 @@
 ﻿using ECommerce.Models;
+using ECommerce.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ECommerce.Controllers
 {
@@ -41,24 +43,64 @@ namespace ECommerce.Controllers
         public IActionResult Edit(Guid id)
         {
             var customer = _context.Customer.Find(id);
+
             if (customer == null)
             {
                 return NotFound();
             }
-            return View(customer);
-        
+
+            var viewModel = new CustomerViewModel
+            {
+                UserID = customer.userID,
+                Name = customer.name,
+                WishlistVisibility = customer.WishlistVisibility,
+                PreferredPaymentMethodID = customer.PreferredPaymentMethodID,
+
+                PaymentMethods = _context.PaymentMethod
+                    .Select(p => new SelectListItem
+                    {
+                        Value = p.MethodID.ToString(),
+                        Text = p.MethodName
+                    })
+                    .ToList()
+            };
+
+            return View(viewModel);
         }
 
+
         [HttpPost]
-        public IActionResult Edit(Customer customer)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(CustomerViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                 _context.Customer.Update(customer);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                model.PaymentMethods = _context.PaymentMethod
+                    .Select(p => new SelectListItem
+                    {
+                        Value = p.MethodID.ToString(),
+                        Text = p.MethodName
+                    })
+                    .ToList();
+
+                return View(model);
             }
-            return View(customer);
+
+            var customer = _context.Customer.Find(model.UserID);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            customer.name = model.Name;
+            customer.WishlistVisibility = model.WishlistVisibility;
+            customer.PreferredPaymentMethodID = model.PreferredPaymentMethodID;
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
         //insert

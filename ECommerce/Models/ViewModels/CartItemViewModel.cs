@@ -1,4 +1,4 @@
-﻿namespace ECommerce.Models
+﻿namespace ECommerce.Models.ViewModels
 {
     public class CartItemViewModel
     {

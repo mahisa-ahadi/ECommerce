@@ -1,2 +1,26 @@
-﻿@model Customer
+﻿@model ECommerce.Models.ViewModels.CustomerViewModel
+<div asp-validation-summary="All" class="text-danger"></div>
+<form>
+	<div>
+		<strong>Name</strong>
+		<input value=" @Model.Name" />
+	</div>
+	<div>
+		<strong>WishList Visibility</strong>
+		<input type="checkbox" value="@Model.WishlistVisibility" />
+	</div>
+	<input type="hidden" value="@Model.PreferredPaymentMethodID" />
+	<div class="mb-3">
+		<label asp-for="PreferredPaymentMethodID"></label>
 
+		<select asp-for="PreferredPaymentMethodID"
+				asp-items="ViewBag.PaymentMethods"
+				class="form-control">
+		</select>
+	</div>
+	<div>
+		<button type="submit" class="btn btn-primary">save</button>
+	</div>
+
+	
+</form>
